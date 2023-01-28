@@ -1,14 +1,12 @@
-const PizzaShop = require("./pizza-shop");
-const DrinkMachine = require("./drink-machine");
+const EventEmitter = require("node:events");
 
-const pizzaShop = new PizzaShop();
-const drinkMachine = new DrinkMachine();
+const emitter = new EventEmitter();
 
-pizzaShop.on("order", (size, topping) => {
-  console.log(`Order received! Baking a ${size} pizza with ${topping}`);
-  drinkMachine.serveDrink(size);
-});
+const callback = () => console.log("Pizza ordered!");
 
-pizzaShop.displayOrderNumber();
-pizzaShop.order("large", "mushrooms");
-pizzaShop.displayOrderNumber();
+emitter.addListener("order-pizza", callback);
+emitter.removeListener("order-pizza", callback);
+
+emitter.emit("order-pizza");
+
+// Result: nothing gets printed
