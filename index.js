@@ -2,11 +2,9 @@ const EventEmitter = require("node:events");
 
 const emitter = new EventEmitter();
 
-const callback = () => console.log("Pizza ordered!");
-
-emitter.addListener("order-pizza", callback);
-emitter.removeListener("order-pizza", callback);
+emitter.addListener("order-pizza", () => console.log("Pizza ordered!"));
+emitter.removeListener("order-pizza", () => console.log("Pizza ordered!"));
 
 emitter.emit("order-pizza");
 
-// Result: nothing gets printed
+// Result: listener not removed
