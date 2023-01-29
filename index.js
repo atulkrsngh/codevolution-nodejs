@@ -5,7 +5,8 @@ const readableStream = fs.createReadStream("./file.txt", {
   highWaterMark: 2,
 });
 
-const writeableStream = fs.createWriteStream("./file2.txt");
+const writeableStream = fs.createWriteStream("./file2.txt", { flags: "a" });
+// append mode
 
 let count = 0;
 readableStream.on("data", (chunk) => {
