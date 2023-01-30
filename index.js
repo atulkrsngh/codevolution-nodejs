@@ -1,16 +1,9 @@
 const http = require("node:http");
-const fs = require("node:fs");
 
 const server = http.createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/html" });
+  res.writeHead(200, { "Content-Type": "text/plain" });
 
-  const greetingName = "Sanjar"; // or get from DB, or external API
-
-  // using readFileSync just to keep things simple
-  let htmlFileContents = fs.readFileSync("./index.html", "utf-8");
-  htmlFileContents = htmlFileContents.replace("{{name}}", greetingName);
-
-  res.end(htmlFileContents);
+  res.end(req.url);
 });
 
 server.listen(3000, () => {
