@@ -18,17 +18,23 @@ const server = http.createServer((req, res) => {
   //   res.end(htmlFileContents);
   // });
 
-  // using streams
-  const htmlFileReadStream = fs.createReadStream("./index.html", {
+  // // using streams
+  // const htmlFileReadStream = fs.createReadStream("./index.html", {
+  //   encoding: "utf-8",
+  //   highWaterMark: 1e3, // for demo. File is 1.4e6 bytes
+  // });
+  // htmlFileReadStream.on("data", (chunk) => {
+  //   res.write(chunk);
+  // });
+  // htmlFileReadStream.on("end", () => {
+  //   res.end();
+  // });
+
+  // using steams - piping
+  fs.createReadStream("./index.html", {
     encoding: "utf-8",
     highWaterMark: 1e3, // for demo. File is 1.4e6 bytes
-  });
-  htmlFileReadStream.on("data", (chunk) => {
-    res.write(chunk);
-  });
-  htmlFileReadStream.on("end", () => {
-    res.end();
-  });
+  }).pipe(res);
 });
 
 server.listen(3000, () => {
