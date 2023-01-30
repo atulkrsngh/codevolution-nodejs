@@ -1,40 +1,16 @@
 const http = require("node:http");
 const fs = require("node:fs");
-// const fsp = require("node:fs/promises");
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
 
-  // const htmlFileContents = fs.readFileSync("./index.html", "utf-8");
-  // res.end(htmlFileContents);
+  const greetingName = "Sanjar"; // or get from DB, or external API
 
-  // // async approach - callback
-  // fs.readFile("./index.html", "utf-8", (err, htmlFileContents) => {
-  //   if (!err) res.end(htmlFileContents);
-  // });
+  // using readFileSync just to keep things simple
+  let htmlFileContents = fs.readFileSync("./index.html", "utf-8");
+  htmlFileContents = htmlFileContents.replace("{{name}}", greetingName);
 
-  // // async approach - Promise
-  // fsp.readFile("./index.html", "utf-8").then((htmlFileContents) => {
-  //   res.end(htmlFileContents);
-  // });
-
-  // // using streams
-  // const htmlFileReadStream = fs.createReadStream("./index.html", {
-  //   encoding: "utf-8",
-  //   highWaterMark: 1e3, // for demo. File is 1.4e6 bytes
-  // });
-  // htmlFileReadStream.on("data", (chunk) => {
-  //   res.write(chunk);
-  // });
-  // htmlFileReadStream.on("end", () => {
-  //   res.end();
-  // });
-
-  // using steams - piping
-  fs.createReadStream("./index.html", {
-    encoding: "utf-8",
-    highWaterMark: 1e3, // for demo. File is 1.4e6 bytes
-  }).pipe(res);
+  res.end(htmlFileContents);
 });
 
 server.listen(3000, () => {
