@@ -1,6 +1,6 @@
 const http = require("node:http");
-// const fs = require("node:fs");
-const fsp = require("node:fs/promises");
+const fs = require("node:fs");
+// const fsp = require("node:fs/promises");
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
@@ -14,8 +14,20 @@ const server = http.createServer((req, res) => {
   // });
 
   // // async approach - Promise
-  fsp.readFile("./index.html", "utf-8").then((htmlFileContents) => {
-    res.end(htmlFileContents);
+  // fsp.readFile("./index.html", "utf-8").then((htmlFileContents) => {
+  //   res.end(htmlFileContents);
+  // });
+
+  // using streams
+  const htmlFileReadStream = fs.createReadStream("./index.html", {
+    encoding: "utf-8",
+    highWaterMark: 1e3, // for demo. File is 1.4e6 bytes
+  });
+  htmlFileReadStream.on("data", (chunk) => {
+    res.write(chunk);
+  });
+  htmlFileReadStream.on("end", () => {
+    res.end();
   });
 });
 
