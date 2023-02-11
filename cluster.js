@@ -22,3 +22,6 @@ if (cluster.isMaster) {
     )
   );
 }
+
+const os = require("node:os");
+console.log(os.cpus().length); // check number of CPU cores
