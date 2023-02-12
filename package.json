@@ -1,0 +1,20 @@
+{
+  "name": "codevolution-nodejs",
+  "version": "1.0.0",
+  "description": "All projects are in different [branches](https://github.com/exemplar-codes/codevolution-nodejs/branches/all).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exemplar-codes/codevolution-nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/exemplar-codes/codevolution-nodejs/issues"
+  },
+  "homepage": "https://github.com/exemplar-codes/codevolution-nodejs#readme"
+}
