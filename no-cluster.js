@@ -1,12 +1,11 @@
 const http = require("node:http");
 
 const server = http.createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-
-  if (req.url === "/") res.end("Home page");
+  res.writeHead(200, { "Content-Type": "application/json" });
+  if (req.url === "/") res.end(JSON.stringify("Home page"))
   else if (req.url === "/slow-page") {
     for (let i = 0; i < 6e9; i++) {} // slow op
-    res.end("Slow page");
+    res.end(JSON.stringify(`Slow page`));
   }
 });
 
