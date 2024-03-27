@@ -1,4 +1,4 @@
-const fs = require("node:fs/promises");
+const fs = require("node:fs/promises"); // fs promise module
 
 console.log("First");
 // read file with promises
