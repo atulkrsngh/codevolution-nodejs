@@ -7,4 +7,4 @@ const readableStream = fs.createReadStream("./file.txt", {
 });
 
 const gzip = zlib.createGzip();
-readableStream.pipe(gzip).pipe(fs.WriteStream("./file2.txt.gz"));
+readableStream.pipe(gzip).pipe(fs.WriteStream("./file2.txt.gz")); // chaining - readable to transform to writable
