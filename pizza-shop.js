@@ -8,7 +8,7 @@ class PizzaShop extends EventEmitter {
 
   order(size, topping) {
     this.orderNumber += 1;
-    this.emit("order", size, topping);
+    this.emit("order", size, topping); // emit is available because of inheritance
   }
 
   displayOrderNumber() {
