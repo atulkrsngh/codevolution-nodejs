@@ -1,6 +1,6 @@
 const EventEmitter = require("node:events");
 
-class PizzaShop extends EventEmitter {
+class PizzaShop extends EventEmitter { // after extending, PizzaShop can emit it's own event
   constructor() {
     super(); // all previous constructors
     this.orderNumber = 0;
