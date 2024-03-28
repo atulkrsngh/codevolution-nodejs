@@ -1,3 +1,12 @@
+setTimeout(() => console.log("This is setTimeout 1"), 0);
+setTimeout(() => {
+  console.log("This is setTimeout 1")
+    process.nextTick(() => {
+      console.log("This is inner next tick inside set timeout");
+    })
+  }, 0);
+setTimeout(() => console.log("This is setTimeout 1"), 0);
+
 process.nextTick(() => {
   console.log("This is process.nextTick1");
 })
@@ -37,4 +46,8 @@ Promise.resolve().then(() => {
   This is Promise.resolve2
   This is Promise.resolve3
   This is inner next tick inside promise resolve
+  This is setTimeout 1
+  This is setTimeout 2
+  This is inner next tick inside set timeout
+  This is setTimeout 3
 */
