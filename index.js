@@ -2,6 +2,7 @@ const http = require("node:http");
 const fs = require("node:fs");
 
 const server = http.createServer( (req, res) => {
+  //req.method : GET, POST, PUT, DELETE
   if (req.url === "/") { // sending html content
     res.writeHead(200, { "Content-Type": "text/html" }); // without content type text/html, full string will be sent in response
     return res.end(
