@@ -17,9 +17,9 @@ const server = http.createServer((req, res) => {
       firstName: "Bruce",
       lastName: "Wayne",
     };
-    return res.end(JSON.stringify(superHero));
+    return res.end(JSON.stringify(superHero)); // we can't send javascript object as is in response
   } else {
-    res.writeHead(404, { "Content-Type": "text/html" });
+    res.writeHead(404, { "Content-Type": "text/html" }); // without content type, full string will be sent in response
     return res.end(
       "<html><head><title>404</title></head><body>Page not found</body></html>"
     );
