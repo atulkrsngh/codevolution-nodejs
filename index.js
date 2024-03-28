@@ -1,14 +1,40 @@
-const PizzaShop = require("./pizza-shop");
-const DrinkMachine = require("./drink-machine");
+process.nextTick(() => {
+  console.log("This is process.nextTick1");
+})
 
-const pizzaShop = new PizzaShop();
-const drinkMachine = new DrinkMachine();
+process.nextTick(() => {
+  console.log("This is process.nextTick2");
+  process.nextTick(() => {
+    console.log("This is inner next tick inside next tick");
+  })
+})
 
-pizzaShop.on("order", (size, topping) => {
-  console.log(`Order received! Baking a ${size} pizza with ${topping}`);
-  drinkMachine.serveDrink(size);
-});
+process.nextTick(() => {
+  console.log("This is process.nextTick3");
+})
 
-pizzaShop.displayOrderNumber();
-pizzaShop.order("large", "mushrooms");
-pizzaShop.displayOrderNumber();
+Promise.resolve().then(() => {
+  console.log("This is Promise.resolve1");
+})
+
+Promise.resolve().then(() => {
+  console.log("This is Promise.resolve2");
+    process.nextTick(() => {
+    console.log("This is inner next tick inside promise resolve");
+  })
+})
+
+Promise.resolve().then(() => {
+  console.log("This is Promise.resolve3");
+})
+
+/*
+  This is process.nextTick1
+  This is process.nextTick2
+  This is process.nextTick3
+  This is inner next tick inside next tick
+  This is Promise.resolve1
+  This is Promise.resolve2
+  This is Promise.resolve3
+  This is inner next tick inside promise resolve
+*/
