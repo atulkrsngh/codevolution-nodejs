@@ -1,40 +1,32 @@
 const fs = require("node:fs");
 
-fs.readFile(__filename, () => {
-  console.log("This is readfile 1");
-  setImmediate(() => {
-    console.log("This is setImmediate inside readfile");
-  })
+const readableStream = fs.createReadStream(__filename);
+readableStream.close();
 
-  process.nextTick(() => {
-    console.log("This is process nexttick inside readFile");
-  })
-  
-  Promise.resolve().then(() => {
-    console.log("This is promise resolve inside readFile");
-  })
+readableStream.on("close", () => { // this event will be triggered because of 4th line
+  console.log("this is from readable stream close event callback");
 })
 
-process.nextTick(() => {
-  console.log("This is process nexttick 1");
-})
-
-Promise.resolve().then(() => {
-  console.log("This is promise resolve 1");
+setImmediate(() => {
+  console.log("This is setImmediate 1");
 })
 
 setTimeout(() => {
   console.log("This is setTimeout 1");
 }, 0)
 
-for(let i = 0; i < 20000000000; i++) {} // This line will ensure that setTimeout timer elapses when event loop goes to timer queue for callback check
+Promise.resolve().then(() => {
+  console.log("This is promise resolve 1");
+})
+
+process.nextTick(() => {
+  console.log("This is process nexttick 1");
+})
 
 /*
   This is process nexttick 1
   This is promise resolve 1
   This is setTimeout 1
-  This is readfile 1
-  This is process nexttick inside readFile
-  This is promise resolve inside readFile
-  This is setImmediate inside readfile
+  This is setImmediate 1
+  this is from readable stream close event callback
 */
