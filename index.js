@@ -1,53 +1,26 @@
-setTimeout(() => console.log("This is setTimeout 1"), 0);
+const fs = require("node:fs");
+
+fs.readFile(__filename, () => {
+  console.log("This is readfile 1");
+})
+
+process.nextTick(() => {
+  console.log("This is process nexttick 1");
+})
+
+Promise.resolve().then(() => {
+  console.log("This is promise resolve 1");
+})
+
 setTimeout(() => {
-  console.log("This is setTimeout 1")
-    process.nextTick(() => {
-      console.log("This is inner next tick inside set timeout");
-    })
-  }, 0);
-setTimeout(() => console.log("This is setTimeout 1"), 0);
+  console.log("This is setTimeout 1");
+}, 0)
 
-process.nextTick(() => {
-  console.log("This is process.nextTick1");
-})
-
-process.nextTick(() => {
-  console.log("This is process.nextTick2");
-  process.nextTick(() => {
-    console.log("This is inner next tick inside next tick");
-  })
-})
-
-process.nextTick(() => {
-  console.log("This is process.nextTick3");
-})
-
-Promise.resolve().then(() => {
-  console.log("This is Promise.resolve1");
-})
-
-Promise.resolve().then(() => {
-  console.log("This is Promise.resolve2");
-    process.nextTick(() => {
-    console.log("This is inner next tick inside promise resolve");
-  })
-})
-
-Promise.resolve().then(() => {
-  console.log("This is Promise.resolve3");
-})
+for(let i = 0; i < 20000000000; i++) {} // This line will ensure that setTimeout timer elapses when event loop goes to timer queue for callback check
 
 /*
-  This is process.nextTick1
-  This is process.nextTick2
-  This is process.nextTick3
-  This is inner next tick inside next tick
-  This is Promise.resolve1
-  This is Promise.resolve2
-  This is Promise.resolve3
-  This is inner next tick inside promise resolve
+  This is process nexttick 1
+  This is promise resolve 1
   This is setTimeout 1
-  This is setTimeout 2
-  This is inner next tick inside set timeout
-  This is setTimeout 3
+  This is readfile 1
 */
