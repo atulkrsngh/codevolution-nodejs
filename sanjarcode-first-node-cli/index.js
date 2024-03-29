@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node // this is to tell operating system which interpreter to use, node in this case which is installed at path /usr/bin/env
 
 const inquirer = require("inquirer");
 
