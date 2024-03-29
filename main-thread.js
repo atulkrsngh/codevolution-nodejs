@@ -6,7 +6,7 @@ const server = http.createServer((req, res) => {
 
   if (req.url === "/") res.end(JSON.stringify("Home page"));
   else if (req.url === "/slow-page") {
-    const worker = new Worker("./worker-thread.js");
+    const worker = new Worker("./worker-thread.js"); // creating new worker thread  passing worker file as argument
     worker.on("message", (j) => {
       res.end(JSON.stringify(`Slow page ${j}`));
     });
