@@ -5,4 +5,4 @@ for (let i = 0; i < 6e9; i++) {
   j++;
 } // slow op
 
-parentPort.postMessage(j);
+parentPort.postMessage(j); // sending value back to main thread
