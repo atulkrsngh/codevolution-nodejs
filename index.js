@@ -1,25 +1,29 @@
-const EventEmitter = require("node:events"); // returns a class EventEmitter which encapsulates functionality to emit events and respond to events, that's why named EventEmitter
+const path = require('node:path');
 
-const emitter = new EventEmitter(); // Instantiating class
+console.log(path.basename(__dirname)); // path_module
+console.log(path.basename(__filename)); // index.js
+console.log(path.extname(__filename)); // extension of filename
+console.log(path.parse(__filename)); // object with properties like root, dir, base, ext, name
+console.log(path.format(path.parse(__filename))); // Original filename
+console.log(path.isAbsolute(__filename)); // true if absolute
+console.log(path.isAbsolute('./data.json')); // false as it's relative
+console.log(path.join('folder1', 'folder2', 'index.html')); // join and normalized the resulting path
+console.log(path.resolve('folder1', 'folder2', 'index.html')) // resolves sequence of path segments to an absolute path
 
-const callback1 = () => console.log("Pizza ordered!");
-const callback2 = () => console.log("Pizza ordered!");
-
-emitter.on("order-pizza", (size, toppings) => { // responding to event order-pizza (listener)
-  console.log(`Baking ${size} pizza with ${toppings} topping`);
-});
-
-emitter.on("order-pizza", (size) => { // we can add multiple listener to an event
-  if(size === "large") {
-    console.log("serving complimentary drink");
-  }
-});
-
-emitter.addListener("order-pizza", callback1);
-emitter.removeListener("order-pizza", callback2);
-
-console.log("Do work"); // This will be printed first as the event is getting emitted after this
-emitter.emit("order-pizza", "large", "mushroom"); // emit order-pizza event, large and mushroom are arguments(optional) which we want to pass to listener
-
-// Result: listener not removed, since functions cannot be compared.
-// Removal works by comparing the reference (memory address). Here the two have different addresses.
+/*
+path_module
+index.js
+.js
+{
+    root: 'C:\\',
+    dir: 'C:\\Users\\Atul8.Kumar\\OneDrive - Reliance Corporate IT Park Limited\\Documents\\MERN\\Back-End\\Programs\\path_module',
+    base: 'index.js',
+    ext: '.js',
+    name: 'index'
+}
+C:\Users\Atul8.Kumar\OneDrive - Reliance Corporate IT Park Limited\Documents\MERN\Back-End\Programs\path_module\index.js
+true
+false
+folder1\folder2\index.html
+C:\Users\Atul8.Kumar\OneDrive - Reliance Corporate IT Park Limited\Documents\MERN\Back-End\Programs\path_module\folder1\folder2\index.html
+*/
