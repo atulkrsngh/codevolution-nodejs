@@ -15,7 +15,7 @@ emitter.on("order-pizza", (size) => { // we can add multiple listener to an even
   }
 });
 
-emitter.addListener("order-pizza", callback1);
+emitter.addListener("order-pizza", callback1); // Another way to add and remove event listeners
 emitter.removeListener("order-pizza", callback2);
 
 console.log("Do work"); // This will be printed first as the event is getting emitted after this
