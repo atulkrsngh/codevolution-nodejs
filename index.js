@@ -23,6 +23,7 @@ emitter.emit("order-pizza", "large", "mushroom"); // emit order-pizza event, lar
 
 // Result: listener not removed, since functions cannot be compared.
 // Removal works by comparing the reference (memory address). Here the two have different addresses.
+// on is an alias of addListener and off is an alias of removeListener
 
 /*
 If we want to remove the listeners added using on, we can do so using removeListeners or using off. We just need the reference of the listener.
@@ -56,6 +57,6 @@ emitter.off("order-pizza", listener2); // Using `off`, which is an alias for `re
 
 console.log("Listeners removed");
 
-emitter.emit("order-pizza", "large", "mushroom");
+emitter.emit("order-pizza", "large", "mushroom"); // this will not print anything as all listeners are removed. 
 
 */
