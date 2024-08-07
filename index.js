@@ -23,3 +23,39 @@ emitter.emit("order-pizza", "large", "mushroom"); // emit order-pizza event, lar
 
 // Result: listener not removed, since functions cannot be compared.
 // Removal works by comparing the reference (memory address). Here the two have different addresses.
+
+/*
+If we want to remove the listeners added using on, we can do so using removeListeners or using off. We just need the reference of the listener.
+
+const EventEmitter = require("node:events");
+
+const emitter = new EventEmitter();
+
+const listener1 = (size, toppings) => {
+  console.log(`Baking ${size} pizza with ${toppings} topping`);
+};
+
+const listener2 = (size) => {
+  if (size === "large") {
+    console.log("serving complimentary drink");
+  }
+};
+
+emitter.on("order-pizza", listener1);
+emitter.on("order-pizza", listener2);
+
+const callback1 = () => console.log("Pizza ordered!");
+emitter.addListener("order-pizza", callback1);
+
+console.log("Do work");
+
+emitter.emit("order-pizza", "large", "mushroom");
+
+emitter.removeListener("order-pizza", listener1);
+emitter.off("order-pizza", listener2); // Using `off`, which is an alias for `removeListener`
+
+console.log("Listeners removed");
+
+emitter.emit("order-pizza", "large", "mushroom");
+
+*/
