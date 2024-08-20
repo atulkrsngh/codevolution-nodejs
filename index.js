@@ -15,5 +15,5 @@ readableStream.on("data", (chunk) => { // adding data event to the readstream
 });
 
 // We can also use pipe to link the readable and writable stream
-// Use pipe to link the readable stream to the writable stream
+// Use pipe to link the readable stream to the writable stream. Here all the data be read at once and not in chunks. 
 // readableStream.pipe(writableStream);
