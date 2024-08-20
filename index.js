@@ -51,3 +51,5 @@ Promise.resolve().then(() => {
   This is inner next tick inside set timeout
   This is setTimeout 3
 */
+
+// Here if we notice, after each macrotask queue callback execution, the microtask queue will be checked
