@@ -38,3 +38,5 @@ Promise.resolve().then(() => {
   This is Promise.resolve3
   This is inner next tick inside promise resolve
 */
+
+// Here "This is inner next tick inside promise resolve" is printing after "This is Promise.resolve3" because both are microtask queues.
