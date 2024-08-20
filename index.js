@@ -11,6 +11,6 @@ const MAX_CALLS = 2;
 const start1 = Date.now();
 for(let i = 0; i < MAX_CALLS; i++) {
   crypto.pbkdf2Sync("password", "salt", 100000, 512, "sha512", () => { // async version
-    console.log(`Hash ${i+1)`, Date.now()-start1); // Here both the calls will take almost similar time and will increase linearly unlike above. Each call runs in a separate thread from libuv threadpool. In their thread, they run synchronously but for main, it will async
+    console.log(`Hash ${i+1)`, Date.now()-start1); // Here both the calls will take almost similar time and will not increase linearly unlike above. Each call runs in a separate thread from libuv threadpool. In their thread, they run synchronously but for main, it will async
   })
 }
