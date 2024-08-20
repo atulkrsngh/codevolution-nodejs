@@ -13,3 +13,7 @@ readableStream.on("data", (chunk) => { // adding data event to the readstream
   writeableStream.write(`${count} ${chunk}\n`);
   count += 1;
 });
+
+// We can also use pipe to link the readable and writable stream
+// Use pipe to link the readable stream to the writable stream
+// readableStream.pipe(writableStream);
