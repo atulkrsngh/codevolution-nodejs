@@ -29,3 +29,5 @@ for(let i = 0; i < 20000000000; i++) {} // This line will ensure that setTimeout
   This is setImmediate 1 (I/O events are polled and callback functions are added to the I/O queue only after the I/O operation is completed)
   This is readfile 1
 */
+
+// Because of for loop, the timer of setTimeout expires and since it's timer queue, it will be executed before check queue where setimmediate is present
