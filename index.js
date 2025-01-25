@@ -22,7 +22,8 @@ console.log("Do work"); // This will be printed first as the event is getting em
 emitter.emit("order-pizza", "large", "mushroom"); // emit order-pizza event, large and mushroom are arguments(optional) which we want to pass to listener
 
 // Result: listener not removed, since functions cannot be compared.
-// Removal works by comparing the reference (memory address). Here the two have different addresses.
+// Removal works by comparing the reference (memory address). Here the two have different addresses. While adding and removing listeners,
+// always ensure, you use the same reference to the callback function. In case of anonymous function, listener won't be removed
 // on is an alias of addListener and off is an alias of removeListener
 
 /*
