@@ -1,11 +1,11 @@
 setTimeout(() => console.log("This is setTimeout 1"), 0);
 setTimeout(() => {
-  console.log("This is setTimeout 1")
+  console.log("This is setTimeout 2")
     process.nextTick(() => {
       console.log("This is inner next tick inside set timeout");
     })
   }, 0);
-setTimeout(() => console.log("This is setTimeout 1"), 0);
+setTimeout(() => console.log("This is setTimeout 3"), 0);
 
 process.nextTick(() => {
   console.log("This is process.nextTick1");
