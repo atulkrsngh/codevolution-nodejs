@@ -30,3 +30,4 @@ process.nextTick(() => {
   This is setImmediate 1
   this is from readable stream close event callback
 */
+// For printing setTimeout where it is, we need to write for loop as we did in other examples to ensure time elapses
